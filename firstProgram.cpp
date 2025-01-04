@@ -21,6 +21,7 @@ int binarySearch(int n, int arr[], int element) {
 int main() {
     int n;
     cin >> n;
+    cout <<"This is binary Search Program";
 
     
     int element = 4;
