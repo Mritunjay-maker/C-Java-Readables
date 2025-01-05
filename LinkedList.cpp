@@ -74,6 +74,22 @@ Node *insertAtEnd(Node *head, int data){
     temp->next = NULL;
     return head;
 }
+
+Node *deleteAtFront(Node *head){
+    if(head == NULL){
+        return NULL;
+    }
+    head = head->next;
+    return head;
+}
+Node *deleteAtEnd(Node *head){
+    Node *curr = head;
+    while(curr->next->next != NULL){
+        curr = curr->next;
+    }
+    curr->next = NULL;
+    return head;
+}
 int main() {
 
     Node *head = new Node(56);
@@ -88,5 +104,10 @@ int main() {
     head = insertAtEnd(head, 97);
     cout<< length(head) << endl;
     printList(head);
+    cout << endl;
+    head = deleteAtEnd(head);
+    printList(head);
+    cout << endl;
+    cout<<length(head);
     
 }
