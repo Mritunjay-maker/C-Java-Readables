@@ -57,14 +57,36 @@ int search(Node *head, int key){
     return -1;
 
 }
+Node *insertNodeAtFront(Node *head, int data){
+    Node *temp = new Node(data);
+    temp->next=head;
+    return temp;
+
+
+}
+Node *insertAtEnd(Node *head, int data){
+    Node *temp = new Node(data);
+    Node *curr = head;
+    while(curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = temp;
+    temp->next = NULL;
+    return head;
+}
 int main() {
 
     Node *head = new Node(56);
     createLLfromArray(head,5);
+    
+    cout << endl;
+   
+    cout << endl;
+    
+    head = insertNodeAtFront(head, 80);
+    head = insertNodeAtFront(head, 90);
+    head = insertAtEnd(head, 97);
+    cout<< length(head) << endl;
     printList(head);
-    cout << endl;
-    cout << length(head);
-    cout << endl;
-    cout << search(head,1);
     
 }
