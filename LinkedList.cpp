@@ -83,11 +83,43 @@ Node *deleteAtFront(Node *head){
     return head;
 }
 Node *deleteAtEnd(Node *head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    
     Node *curr = head;
     while(curr->next->next != NULL){
         curr = curr->next;
     }
+    free(curr->next);
     curr->next = NULL;
+    return head;
+}
+Node *deleteNodeAtPosition(Node *head, int position) {
+    if(head == NULL) {
+        return NULL;
+    }
+    int lenOfList = length(head);
+    if(position > lenOfList) {
+        cout << "Size Exceeds!";
+        return head;
+    }
+    if(position == 1){
+        head = deleteAtFront(head);
+        return head;
+    }
+    if(position == lenOfList) {
+        head = deleteAtEnd(head);
+        return head;
+    }
+    Node *curr = head;
+    int i = 1;
+    while(i < position - 1 && curr != NULL){
+        curr = curr->next;
+        i++;
+    }
+    cout << curr->data << endl;
+    curr->next = curr->next->next;
     return head;
 }
 int main() {
@@ -105,9 +137,10 @@ int main() {
     cout<< length(head) << endl;
     printList(head);
     cout << endl;
-    head = deleteAtEnd(head);
+    head = deleteNodeAtPosition(head,5);
     printList(head);
     cout << endl;
-    cout<<length(head);
+    cout << length(head);
+    
     
 }
