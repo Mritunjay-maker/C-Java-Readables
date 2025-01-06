@@ -114,13 +114,44 @@ Node *deleteNodeAtPosition(Node *head, int position) {
     }
     Node *curr = head;
     int i = 1;
+    Node *prev = NULL;
     while(i < position - 1 && curr != NULL){
+        
         curr = curr->next;
         i++;
     }
-    cout << curr->data << endl;
+    cout << prev->data << endl;
     curr->next = curr->next->next;
     return head;
+}
+Node *insertAtPos(Node *head, int position, int data) {
+  int i = 1;
+  Node *temp = new Node(data);
+  // if (position > findLength(head)) {
+  //   cout << " Not Possible!";
+  //   return head;
+  // }
+  if (position == 1) {
+    temp->next = head;
+    return temp;
+  }
+  // if(position == findLength(head)){
+  //   Node *itr = head;
+  //   while(itr->next != NULL){
+  //     itr = itr->next;
+  //   }
+  //   itr->next = temp;
+  //   temp->next = NULL;
+  // }
+  Node *curr = head;
+  while (i < position - 1 && curr != NULL) {
+    curr = curr->next;
+    i++;
+  }
+  temp->next = curr->next;
+  curr->next = temp;
+
+  return head;
 }
 int main() {
 
@@ -140,6 +171,9 @@ int main() {
     head = deleteNodeAtPosition(head,5);
     printList(head);
     cout << endl;
+    head =insertAtPos(head, 7,8);
+    cout << endl;
+    printList(head);
     cout << length(head);
     
     
