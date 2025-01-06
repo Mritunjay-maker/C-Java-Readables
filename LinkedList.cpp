@@ -153,6 +153,28 @@ Node *insertAtPos(Node *head, int position, int data) {
 
   return head;
 }
+
+Node *deleteWithValue(Node *head, int element) {
+
+    if(head->data == element) {
+        head = head->next;
+        return head;
+    }
+    
+    Node *curr = head;
+    // while(curr->next->data != element && curr->next !=NULL) {
+    //     curr = curr->next;
+    // }
+    for(curr; curr->next != NULL; curr = curr->next){
+        if(curr->next->data == element) {
+            curr->next = curr->next->next;
+            break;
+        }
+    }
+    
+    return head;
+
+}
 int main() {
 
     Node *head = new Node(56);
@@ -168,12 +190,16 @@ int main() {
     cout<< length(head) << endl;
     printList(head);
     cout << endl;
-    head = deleteNodeAtPosition(head,5);
+    //head = deleteNodeAtPosition(head,5);
+    // printList(head);
+    // cout << endl;
+    // head =insertAtPos(head, 7,8);
+    // cout << endl;
+    // printList(head);
+    // cout << length(head);
+    head = deleteWithValue(head,56);
     printList(head);
     cout << endl;
-    head =insertAtPos(head, 7,8);
-    cout << endl;
-    printList(head);
     cout << length(head);
     
     
