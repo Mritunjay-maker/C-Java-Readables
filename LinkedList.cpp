@@ -175,6 +175,19 @@ Node *deleteWithValue(Node *head, int element) {
     return head;
 
 }
+Node *insertNext(Node *head, int position, int element) {
+    Node *temp = new Node(position);
+    if(head ==  NULL) {
+        return head;
+    }
+    Node *curr = head;
+    while(curr->data != element) {
+        curr = curr->next;
+    }
+    temp->next = curr->next;
+    curr->next = temp;
+    return head;
+}
 int main() {
 
     Node *head = new Node(56);
@@ -197,7 +210,7 @@ int main() {
     // cout << endl;
     // printList(head);
     // cout << length(head);
-    head = deleteWithValue(head,56);
+    head = insertNext(head,4,97);
     printList(head);
     cout << endl;
     cout << length(head);
