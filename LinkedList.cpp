@@ -184,14 +184,51 @@ Node *insertNext(Node *head, int position, int element) {
         temp->next = head;
         return temp;
     }
+    bool flag = false;
     
     Node *curr = head;
-    while(curr->next->data != element) {
+    // while(curr->next->data != element) {
+    //     curr = curr->next;
+        
+    // }
+    while(curr->next != NULL){
+        if(curr->next->data == element) {
+            temp->next = curr->next;
+            curr->next = temp;
+            flag = true;
+            break;
+        }
         curr = curr->next;
     }
-    temp->next = curr->next;
-    curr->next = temp;
+    
+
+    if(flag == false) {
+        cout << "element in not there" << endl;
+    }
     return head;
+}
+Node *removeFromEnd(Node *head, int position) {
+    int size = length(head);
+    if(head == NULL) {
+        return head;
+
+    }
+    if(position >= size) {
+        cout << "Operation not possible" << endl;
+        return head;
+    }
+    int itr = size - position;
+    Node *curr = head;
+    int i = 0;
+    while(i < itr - 1) {
+        curr = curr->next;
+        i++;
+    }
+    curr->next = curr->next->next;
+
+    return head;
+
+
 }
 int main() {
 
@@ -205,7 +242,7 @@ int main() {
     head = insertNodeAtFront(head, 80);
     head = insertNodeAtFront(head, 90);
     head = insertAtEnd(head, 97);
-    cout<< length(head) << endl;
+    //cout<< length(head) << endl;
     printList(head);
     cout << endl;
     //head = deleteNodeAtPosition(head,5);
@@ -215,9 +252,13 @@ int main() {
     // cout << endl;
     // printList(head);
     // cout << length(head);
-    head = insertNext(head,4,10);
-    printList(head);
+    //head = insertNext(head,4,55);
+    // printList(head);
+    // cout << endl;
+    cout << length(head);
     cout << endl;
+    head = removeFromEnd(head,5);
+    printList(head);
     cout << length(head);
     
     
