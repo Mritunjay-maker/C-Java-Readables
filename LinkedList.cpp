@@ -180,8 +180,13 @@ Node *insertNext(Node *head, int position, int element) {
     if(head ==  NULL) {
         return head;
     }
+    if(head->data == element) {
+        temp->next = head;
+        return temp;
+    }
+    
     Node *curr = head;
-    while(curr->data != element) {
+    while(curr->next->data != element) {
         curr = curr->next;
     }
     temp->next = curr->next;
@@ -210,7 +215,7 @@ int main() {
     // cout << endl;
     // printList(head);
     // cout << length(head);
-    head = insertNext(head,4,97);
+    head = insertNext(head,4,10);
     printList(head);
     cout << endl;
     cout << length(head);
