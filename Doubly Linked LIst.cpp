@@ -121,12 +121,34 @@ Node *insertTail(Node *head, int data) {
     temp->prev = curr;
     return head;
 }
+Node *insertPos(Node *head, int pos, int data){
+    Node *temp = new Node(data);
+    if(head == NULL && pos == 1) {
+        return temp;
+    }
+
+    Node *curr = head;
+    int cnt = 1;
+    while(cnt < pos - 1 && curr->next != NULL) {
+        cnt++;
+        curr = curr->next;
+        
+    }
+    
+    Node *front = curr->next;
+    cout << front->data<<" ";
+    temp->next = front;
+    front->prev = temp;
+    temp->prev = curr;
+    curr->next = temp;
+    return head;
+}
 int main() {
     
 
     int arr[] = {2,3,4,5,6,7,8};
     Node *head = createList(arr,7);
-    head = insertTail(head,1);
+    head = insertPos(head,6,10);
 
     print(head);
 
