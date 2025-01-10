@@ -99,14 +99,35 @@ Node *deletePos(Node *head, int position) {
    
     return head;
 }
+Node *insertHead(Node *head, int data) {
+    Node *temp = new Node(data);
+    if(head == NULL) {
+        return temp;
+    }
+    temp->next = head;
+    head->prev = temp;
+    return temp;
+}
+Node *insertTail(Node *head, int data) {
+    Node *temp = new Node(data);
+    if(head == NULL) {
+        return temp;
+    }
+    Node *curr = head;
+    while(curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = temp;
+    temp->prev = curr;
+    return head;
+}
 int main() {
     
 
     int arr[] = {2,3,4,5,6,7,8};
     Node *head = createList(arr,7);
-    head = deletePos(head,7);
+    head = insertTail(head,1);
 
-    
     print(head);
 
 }
