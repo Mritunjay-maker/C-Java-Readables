@@ -217,6 +217,13 @@ Node *removeFromEnd(Node *head, int position) {
         cout << "Operation not possible" << endl;
         return head;
     }
+    if(size == position) {
+        head = head->next;
+        return head;
+    }
+    if(size == 1 && position == 1) {
+        return NULL;
+    }
     int itr = size - position;
     Node *curr = head;
     int i = 0;
@@ -257,7 +264,7 @@ int main() {
     // cout << endl;
     cout << length(head);
     cout << endl;
-    head = removeFromEnd(head,5);
+    head = removeFromEnd(head,9);
     printList(head);
     cout << length(head);
     
