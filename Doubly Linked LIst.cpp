@@ -143,13 +143,50 @@ Node *insertPos(Node *head, int pos, int data){
     curr->next = temp;
     return head;
 }
+int lenght(Node *head) {
+    int count = 0;
+    Node *curr = head;
+
+    while(curr != NULL) {
+        count++;
+        curr = curr->next;
+    }
+    return count;
+}
+Node *reverseList(Node *head) {
+    if(head == NULL || head->next == NULL) {
+        return head;
+    }
+    Node *front=head;
+    Node *back = head;
+
+    while(back->next!= NULL){
+        back = back->next;
+    }
+    int size = lenght(head);
+    cout << size << " ";
+    //swap(front->data, back->data);
+        int i = 0;
+    while(i < size/2){
+        swap(front->data, back->data);
+        front = front->next;
+        back = back->prev;
+        i++;
+    } 
+    return head;  
+}
+
+
 int main() {
     
 
-    int arr[] = {2,3,4,5,6,7,8};
-    Node *head = createList(arr,7);
-    head = insertPos(head,6,10);
+    int arr[] = {2,3,4,5,6,7,8,9};
+    Node *head = createList(arr,8);
 
+    //head = reverseList(head);
+    
+    //cout << lenght(head) << endl;
+    head = reverseList(head);
     print(head);
 
 }
