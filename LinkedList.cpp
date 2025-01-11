@@ -175,6 +175,7 @@ Node *deleteWithValue(Node *head, int element) {
     return head;
 
 }
+
 Node *insertNext(Node *head, int position, int element) {
     Node *temp = new Node(position);
     if(head ==  NULL) {
@@ -235,38 +236,33 @@ Node *removeFromEnd(Node *head, int position) {
 
     return head;
 
+}
+Node *evenOdd(Node *head) {
+    if(head == NULL) {
+        return NULL;
+    }
 
+    Node *odd = head;
+    Node *even = head->next;
+    Node *evenHead = even;
+    while(even->next != NULL) {
+        odd->next = odd->next->next;
+        even->next = even->next->next;
+
+        odd = odd->next;
+        even = even->next;
+    }
+    odd->next = evenHead;
+    return head;
 }
 int main() {
 
     Node *head = new Node(56);
     createLLfromArray(head,5);
+    head = evenOdd(head);
+    printList(head);
     
-    cout << endl;
    
-    cout << endl;
-    
-    head = insertNodeAtFront(head, 80);
-    head = insertNodeAtFront(head, 90);
-    head = insertAtEnd(head, 97);
-    //cout<< length(head) << endl;
-    printList(head);
-    cout << endl;
-    //head = deleteNodeAtPosition(head,5);
-    // printList(head);
-    // cout << endl;
-    // head =insertAtPos(head, 7,8);
-    // cout << endl;
-    // printList(head);
-    // cout << length(head);
-    //head = insertNext(head,4,55);
-    // printList(head);
-    // cout << endl;
-    cout << length(head);
-    cout << endl;
-    head = removeFromEnd(head,9);
-    printList(head);
-    cout << length(head);
     
     
 }
