@@ -255,12 +255,100 @@ Node *evenOdd(Node *head) {
     odd->next = evenHead;
     return head;
 }
+void segregate(int arr[], int n) {
+    int i =0;
+    int j = n;
+    int start = 0;
+    int end = n-1;
+
+    while(i != j) {
+        if(arr[i] == 0) {
+            swap(arr[i],arr[start]);
+            i++;
+            start++;
+        }
+        else if(arr[i] == 1){
+            i++;
+        }
+        else{
+            swap(arr[i], arr[end]);
+                j--;
+                end--;
+                
+            
+        }
+    }
+}
+Node *segregateList(Node *head) {
+    Node *zero = new Node(-1);
+    
+
+    Node *one = new Node(-1);
+    Node *two = new Node(-1);
+    Node *zeroHead = zero;
+    Node *oneHead = one;
+    Node *twoHead = two;
+    
+
+    Node *curr = head;
+    while(curr != NULL) {
+        if(curr->data == 0){
+            zero->next = curr;
+            zero = curr;
+        
+
+        }
+        if(curr->data == 1) {
+            one->next = curr;
+            one = curr;
+
+        }
+        if(curr->data == 2){
+            two->next = curr;
+            two = curr;
+        
+
+        }
+        curr = curr->next;
+    }
+    // if(curr->data == 0) {
+    //     zero->next = curr;
+    // }
+    // if(curr->data == 1) {
+    //     one->next = curr;
+    // }
+    // else{
+    //     two->next = curr;
+    // }
+    
+    zero->next = oneHead->next;
+    oneHead->next = twoHead->next;
+    return zeroHead;
+}
+
+Node *reverseList(Node *head){
+    
+    Node *prev = NULL;
+    Node *curr = head;
+    while(curr != NULL) {
+        Node *front = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = front;
+    }
+    return prev;
+}
+
 int main() {
 
-    Node *head = new Node(56);
+    Node *head = new Node(0);
     createLLfromArray(head,5);
-    head = evenOdd(head);
+
+    head = reverseList(head);
+    
     printList(head);
+    
+    
     
    
     
